@@ -2,7 +2,8 @@
   "name": "45press_starter",
   "version": "1.0.0",
   "dependencies": {
-    "@fortawesome/fontawesome-pro": "^6.5.1"
+    "@fortawesome/fontawesome-pro": "^6.5.1",
+    "moment": "^2.30.1"
   },
   "browserslist": [
     "defaults"

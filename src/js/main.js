@@ -1,159 +1,66 @@
-// import "owl.carousel"
-// import moment from 'moment'
-// import "magnific-popup"
-// import "./instagram"
+import moment from 'moment'
 
 
 jQuery(document).ready(function ($) {
-  // //instagram
-  // $("#instagram-feed").juicer()
 
-  // // Mobile Navigation
-  // $(".mobile-menu-icon").on('click', function (e) {
-  //   e.preventDefault();
-  //   $("#navbar").toggleClass("active");
-  // });
+  // MOBILE MENU
+  $('.mobile-menu-icon').on('click', function () {
+    // $("#nav-menu").toggleClass('active')
+    $("header").toggleClass('active')
+    $(".nav-items").toggleClass('active')
+    $("#nav-socials").toggleClass('active')
+    $(".line").toggleClass('active')
+  })
 
-  // // Music Carousel
-  // $('#music-carousel').owlCarousel({
-  //   loop: true,
-  //   nav: true,
-  //   dots: false,
-  //   margin: 55,
-  //   items: 1,
-  //   startPosition: 1,
-  //   center: true,
-  //   navText: [
-  //     '<div class="owl-custom-nav-prev"><i class="fal fa-chevron-left"></i></div>',
-  //     '<div class="owl-custom-nav-next"><i class="fal fa-chevron-right"></i></div>'
-  //   ]
-  // })
+  $('.nav-button').on('click', function () {
+    if ($('header').hasClass('active')) {
+      $("header").toggleClass('active')
+      $(".nav-items").toggleClass('active')
+      $("#nav-socials").toggleClass('active')
+      $(".line").toggleClass('active')
+    }
+  })
 
-  // // Video Carousel
-  // $('#videos-carousel').owlCarousel({
-  //   loop: true,
-  //   nav: true,
-  //   dots: false,
-  //   items: 1,
-  //   startPosition: 1,
-  //   center: true,
-  //   // responsive: {
-  //   //   0: {
-  //   //     margin: 20
-  //   //   },
-  //   //   700: {
-  //   //     margin: 80
-  //   //   }
-  //   // },
-  //   navText: [
-  //     '<div class="owl-custom-nav-prev"><i class="fal fa-chevron-left"></i></div>',
-  //     '<div class="owl-custom-nav-next"><i class="fal fa-chevron-right"></i></div>'
-  //   ]
-  // })
 
-  // // Tourdate Import
-  // $.ajax({
-  //   url: 'https://rest.bandsintown.com/artists/id_6748623/events?app_id=45PRESS_doja',
-  //   // url: 'https://rest.bandsintown.com/artists/id_473523/events?app_id=45PRESS_bia',
-  //   method: 'GET',
-  //   dataType: 'json',
-  //   error: () => {
-  //     alert('Error fetching events!');
-  //   }, 
-  //   success: data => {
-  //     const events = $('#tour-dates');
-  //     let html = '';
-  //     let n = 0
-  //     if (data.length) {
-  //       for (let event of data) {
-  //         n++
-  //         html += '<div class="event-group">';
-  //         html += '<div class="event-date">' + moment(event.datetime).format('MMM DD').toUpperCase() + '</div>';
-  //         html += '<div class="event-venue">' + event.venue.name.toUpperCase() + '</div>';
-  //         html += '<div class="event-location">' + event.venue.location.toUpperCase() + '</div>';
-  //         html += '<div class="event-links">';
-  //         for (let offer of event.offers) {
-  //           html += '<a href="' + offer.url + '" target="_blank" class="link">' + offer.type.toUpperCase() + '</a>';
-  //         }
-  //         html += '</div>';
-  //         html += '</div>';
-  //       }
-  //       events.html(html);
-  //     } else {
-  //       events.html('<span class="no-events">Check back soon for new shows!</span>');
-  //     }
-  //     if (n<9) { 
-  //       $("#toggle-dates").hide(); 
-  //     }
-  //   }
-  // });
+  // COUNTDOWN
+  var countDownDate = moment('2024-03-22 00:00 -0500', "YYYY-MM-DD HH:mm z");
 
-  // // Scroll
-  // $('.scroll').on('click', function (e) {
-  //   e.preventDefault();
+  // Update the count down every seconds
+  var x = setInterval(function () {
 
-  //   const href = $(this).attr('href');
-  //   const targetOffset = $(href).offset().top;
-  //   const animationDuration = 500;
+    var now = moment();
+    var distance = countDownDate.diff(now);
 
-  //   $(".navbar").toggleClass("active");
-  //   $('html, body').animate({
-  //     scrollTop: targetOffset
-  //   },
-  //     animationDuration
-  //   )
-  // });
+    // Time calculations for days, hours, minutes and seconds
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-  // // Youtube embed extract
-  // $('.video-switch a').on('click', function (e) {
-  //   e.preventDefault();
-  //   $('.feature-video').attr('src', "https://www.youtube.com/embed/" + $(this).attr('data-videoid'));
-  //   $('.feature-title').html($(this).attr('data-title'));
-  // })
-  
-  // // Dates Toggle
-  // // $('#tour-dates div:lt(9)').show()
+    $(".days10").html(Math.floor(days / 10));
+    $(".days1").html(days % 10);
+    $(".hours10").html(Math.floor(hours / 10));
+    $(".hours1").html(hours % 10);
+    $(".minutes10").html(Math.floor(minutes / 10));
+    $(".minutes1").html(minutes % 10);
+    $(".seconds10").html(Math.floor(seconds / 10));
+    $(".seconds1").html(seconds % 10);
 
-  // $('#toggle-dates').on('click', function (e) {
-  //   e.preventDefault();
-  //   $('#tour-dates').toggleClass('show-first-nine')
-  //   if ($('#tour-dates').hasClass('show-first-nine')) {
-  //     $('#toggle-dates').text('VIEW ALL DATES')
-  //   } else {
-  //     $('#toggle-dates').text('SHOW LESS');
-  //   }
-  // })
 
-  // $('#toggle-bio').on('click', function (e) {
-  //   e.preventDefault();
-  //   $('#bio').toggleClass('show-less')
-  //   if ($('#bio').hasClass('show-less')) {
-  //     $('#toggle-bio').text('READ MORE')
-  //   } else {
-  //     $('#toggle-bio').text('SHOW LESS');
-  //   }
-  // })
+    if (distance < 0) {
+      clearInterval(x);
+      $(".countdown").hide()
+      $(".preorder").html("Listen Now")
 
-  // hide 'show more dates' button
-  // if ($("#tour-dates").children().length < 9) {
-  //   $("#toggle-dates").hide();
-  // }
-
-   // Modal
-  //  $('.mfp-inline').magnificPopup({
-  //   fixedContentPos: true
-  // })
-  // $('.custom-close').on('click', function () {
-  //   $.magnificPopup.close();
-  // })
-
-  // pop-up
-  // $.magnificPopup.open({
-  //   items: {
-  //     src: '#nl-popup'
-  //   },
-  //   type: 'inline',
-  //   fixedContentPos: true
-  // })
+      // $(".days10").html(0);
+      // $(".days1").html(0);
+      // $(".hours10").html(0);
+      // $(".hours1").html(0);
+      // $(".minutes10").html(0);
+      // $(".minutes1").html(0);
+      // $(".seconds10").html(0);
+      // $(".seconds1").html(0);
+    }
+  }, 500);
 
 });
